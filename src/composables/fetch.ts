@@ -1,4 +1,4 @@
-import { ref } from 'vue'
+import {ref} from 'vue'
 
 export function useFetch(url: string) {
   const data = ref(null)
@@ -17,5 +17,5 @@ export function useFetch(url: string) {
 
   fetchData();
 
-  return { data, fetchData, isLoading }
+  return {data, fetchData, isLoading}
 }
