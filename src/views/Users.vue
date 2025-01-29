@@ -14,7 +14,7 @@ import {
 const {
   data,
   isLoading
-} = useFetch('https://jsonplaceholder.typicode.com/users');
+} = useFetch<User[]>('https://jsonplaceholder.typicode.com/users');
 
 const router = useRouter();
 
@@ -27,20 +27,28 @@ const headers = [
 
 const search = ref('')
 
-const handleClick = function (e: Event, row) {
+const handleClick = function (e: Event, row: {item: User}) {
   router.push('/users/' + row.item.id);
 }
 </script>
 
 <template>
-  <v-container>
-    <v-text-field
+  <v-container fluid>
+    <v-row class="flex-row-reverse">
+      <v-col cols="12" sm="8" md="6" lg="4">
+<v-text-field
       v-model="search"
-      label="Search"></v-text-field>
+      label="Search"
+      placeholder="Search"
+      clearable
+      ></v-text-field>
+      </v-col>
+    </v-row>
+    
     <v-data-table
       key="id"
       :headers="headers"
-      :items="data"
+      :items="data || []"
       :loading="isLoading"
       :mobile-breakpoint="580"
       :search="search"
@@ -54,11 +62,13 @@ const handleClick = function (e: Event, row) {
           type="table"
         ></v-skeleton-loader>
       </template>
+      <template #no-data>
+        <div class="text-center">No data available</div>
+      </template>
+
+      <template #no-results>
+        <div class="text-center">No results found</div>
+      </template>
     </v-data-table>
   </v-container>
 </template>
-
-<style
-  scoped>
-
-</style>

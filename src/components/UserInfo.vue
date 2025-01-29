@@ -88,7 +88,7 @@ const userAddress = computed(() => [props.user.address.street, props.user.addres
               <v-list-item-title>
                 Company:
               </v-list-item-title>
-              {{ props.user.company.name }}
+              <p>{{ props.user.company.name }}</p>
             </v-list-item>
 
             <v-list-item>
@@ -96,9 +96,7 @@ const userAddress = computed(() => [props.user.address.street, props.user.addres
                 Catch
                 phrase:
               </v-list-item-title>
-              {{
-                props.user.company.catchPhrase
-              }}
+              <p>{{ props.user.company.catchPhrase }}</p>
             </v-list-item>
           </v-list>
         </v-col>
